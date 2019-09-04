@@ -40,19 +40,16 @@
   !                                                                           !
   ! Notes                                                                     !
   ! 1. The constant/boundaryData/0.. and other time-instant folders should    !
-  !    contain the heat-flux as the input values with filename T. This issue  !
-  !    will be updated if required.                                           !    
-  ! 2. Use the accompanying reader.py utility to create the files from the    !
-  !    output provided from Radiance software. Currently, the script writes   !
-  !    out information for only one time-step. Modify, if necessary.          !
-  ! 3. Only the implementation has been verified. Please test it thoroughly   !
+  !    contain the heat-flux as the input values with filename T.             !
+  ! 2. Only the implementation has been verified. Please test it thoroughly   !
   !    and let me know of any issues.                                         !
-  ! 4. The density*specific heat capacity rhoCp0 is read from the transport   !
+  ! 3. The density*specific heat capacity rhoCp0 is read from the transport   !
   !    dictionary entry. Be consistent with units.                            ! 
   !                                                                           !   
   !                                                                           !
   ! Authors                                                                   !
   ! Harish Gopalan (gopalanh@ihpc.a-star.edu.sg)                              !
+  ! Venugopalan Raghavan (raghavanvsg@ihpc.a-star.edu.sg)                     !
   !---------------------------------------------------------------------------!
 */
 
