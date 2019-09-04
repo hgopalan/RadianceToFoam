@@ -1,0 +1,70 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  | =========                 |                                                 | 
+  | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |    
+  |  \\    /   O peration     | Version:  2.4.0                                 |    
+  |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |  
+  |    \\/     M anipulation  |                                                 |     
+  \*---------------------------------------------------------------------------*/
+FoamFile
+{
+  version     2.0;
+  format      ascii;
+  class       dictionary;
+  object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //  
+
+
+ddtSchemes
+{
+ default	steadyState;
+}
+
+gradSchemes
+{
+ default	          Gauss linear;
+ grad(k) cellLimited Gauss linear 1;
+ grad(omega) cellLimited Gauss linear 1;
+ grad(T) cellLimited Gauss linear 1;
+ grad(U) cellLimited Gauss linear 1;
+}
+
+divSchemes
+{
+ default	Gauss linear;
+ div(phi,U)	bounded Gauss upwind;
+ div(phi,T)	bounded Gauss upwind;
+ div(phi,k)	bounded Gauss upwind;
+ div(phi,epsilon)	bounded Gauss upwind;
+ div(phi,omega)	bounded Gauss upwind;
+ div((nuEff*dev(T(grad(U)))))	Gauss linear;
+}
+
+laplacianSchemes
+{
+ default	Gauss linear limited 0.33;
+ laplacian(nuEff,U)	Gauss linear limited 0.33;
+ laplacian(kappaEff,T)	Gauss linear limited 0.33;
+ laplacian(DkEff,k)	Gauss linear limited 0.33;
+ laplacian(DepsilonEff,epsilon)	Gauss linear limited 0.33;
+ laplacian(DomegaEff,omega)	Gauss linear limited 0.33;
+ laplacian((1|A(U)),p)	Gauss linear limited 0.33;
+ laplacian((1|A(U)),p_rgh)	Gauss linear limited 0.33;
+}
+
+interpolationSchemes
+{
+ default	linear;
+}
+
+snGradSchemes
+{
+ default	limited 0.33;
+}
+
+fluxRequired
+{
+ default	no;
+ p	;
+ p_rgh	;
+}

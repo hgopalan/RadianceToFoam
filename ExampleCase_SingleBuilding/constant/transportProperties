@@ -1,0 +1,55 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+#include "../flow.info"
+
+transportModel  Newtonian;
+
+rhoRef             rhoRef [ 1 -3 0 0 0 0 0 ] 1.225;
+
+UMax           UMax [1 -1 0 0 0 0 0] 10;
+
+DT             DT [ 1 -3 0 0 0 0 0 ] 1;
+
+nu              nu [ 0 2 -1 0 0 0 0 ] 1e-05;
+
+
+// Thermal expansion coefficient
+beta            beta [0 0 0 -1 0 0 0] 1.0/$refairTemp;
+
+// Reference temperature
+TRef            TRef [0 0 0 1 0 0 0] $refairTemp;
+
+// Laminar Prandtl number
+Pr              Pr [0 0 0 0 0 0 0] 0.9;
+
+// Turbulent Prandtl number
+Prt             Prt [0 0 0 0 0 0 0] 0.7;
+
+
+lower.rhoCp0 1000;
+road.rhoCp0 1000;
+waterbody.rhoCp0 1000;
+greenery.rhoCp0 1000;
+building.rhoCp0 1000;
+lower.CpRef 1000;
+greenery.CpRef 1000;
+road.CpRef 1000;
+waterbody.CpRef 1000;
+building.CpRef 1000;
+
+
+// ************************************************************************* //
