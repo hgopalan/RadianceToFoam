@@ -566,10 +566,10 @@ namespace Foam
       const tmp<volScalarField> tnut = turbulence.nut();
       const volScalarField& nut = tnut();
       const scalarField& nutw = nut.boundaryField()[patchI];
-      const volScalarField blanking_=db().lookupObject<volScalarField>("treeblanking"); 
-      const scalarField blankingw_=blanking_.boundaryField()[patchI].patchInternalField();       
-      const volScalarField sb_=db().lookupObject<volScalarField>("solarblanking"); 
-      const scalarField sbw_=sb_.boundaryField()[patchI].patchInternalField();       
+      //const volScalarField blanking_=db().lookupObject<volScalarField>("treeblanking"); 
+      //const scalarField blankingw_=blanking_.boundaryField()[patchI].patchInternalField();       
+      //const volScalarField sb_=db().lookupObject<volScalarField>("solarblanking"); 
+      //const scalarField sbw_=sb_.boundaryField()[patchI].patchInternalField();       
       // retrieve (constant) specific heat capacity from transport dictionary
       const IOdictionary& transportProperties = db().lookupObject<IOdictionary>("transportProperties");
       const scalar rhoCp0(readScalar(transportProperties.lookup(this->patch().name() & ".rhoCp0")));    
@@ -605,15 +605,16 @@ namespace Foam
 
       switch (heatSource_)
 	{
+		      
         case hsPower:
 	  {
             const scalar Ap = gSum(patch().magSf());
-            gradient() = sbw_*(1-0.75*pos(blankingw_))*Prt*q_/(Ap*rhoCp0*(nutw+5e-5));
+            gradient() = Prt*q_/(Ap*rhoCp0*(nutw+5e-5));
             break;
 	  }
         case hsFlux:
 	  {
-	    gradient() = sbw_*(1-0.75*pos(blankingw_))*Prt*q_/(rhoCp0*(nutw+5e-5));
+	    gradient() = Prt*q_/(rhoCp0*(nutw+5e-5));
 	    //	  Pout<<"Minimum nut:"<<this->patch().name()<<"  "<<min(nutw)<<endl;
 	    break;
 	  }
