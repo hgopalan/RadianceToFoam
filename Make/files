@@ -1,0 +1,2 @@
+timeVaryingHeatFlux/timeVaryingHeatFluxFvPatchScalarField.C
+LIB = $(FOAM_USER_LIBBIN)/libradianceToFoam
